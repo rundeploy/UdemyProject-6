@@ -1,0 +1,10 @@
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\bin\Debug\UdemyExercice6.exe.config
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\bin\Debug\UdemyExercice6.exe
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\bin\Debug\UdemyExercice6.pdb
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.csprojAssemblyReference.cache
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.frmAuthors.resources
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.Properties.Resources.resources
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.csproj.GenerateResource.cache
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.csproj.CoreCompileInputs.cache
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.exe
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.pdb
