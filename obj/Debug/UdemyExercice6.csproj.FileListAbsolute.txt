@@ -8,3 +8,4 @@ D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExer
 D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.csproj.CoreCompileInputs.cache
 D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.exe
 D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.pdb
+D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\obj\Debug\UdemyExercice6.frmPublishers.resources

@@ -23,26 +23,35 @@ namespace UdemyExercice6
         OleDbDataAdapter authorsAdapter;
         DataTable authorsTable;
         CurrencyManager authorsManager;
+        bool dbError = true;
 
 
         private void frmAuthors_Load(object sender, EventArgs e)
         {
-            var connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\Books.accdb; 
+            try
+            {
+                var connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\PROJETOS\UdemyCourse (Alex)\UdemyProject 6\UdemyExercice6\Books.accdb; 
                                 Persist Security Info = False; ";
-            booksConn = new OleDbConnection(connString);
-            booksConn.Open();
-            authorsComm = new OleDbCommand("SELECT * from Authors order By Author", booksConn);
-            authorsAdapter = new OleDbDataAdapter();
-            authorsTable = new DataTable();
-            authorsAdapter.SelectCommand = authorsComm;
-            authorsAdapter.Fill(authorsTable);
+                booksConn = new OleDbConnection(connString);
+                booksConn.Open();
+                authorsComm = new OleDbCommand("SELECT * from Authors order By Author", booksConn);
+                authorsAdapter = new OleDbDataAdapter();
+                authorsTable = new DataTable();
+                authorsAdapter.SelectCommand = authorsComm;
+                authorsAdapter.Fill(authorsTable);
 
-            txtAuthorID.DataBindings.Add("Text", authorsTable, "AU_ID");
-            txtAuthorName.DataBindings.Add("Text", authorsTable, "Author");
-            txtAuthorBorn.DataBindings.Add("Text", authorsTable, "Year_Born");
-            authorsManager = (CurrencyManager) BindingContext[authorsTable];
+                txtAuthorID.DataBindings.Add("Text", authorsTable, "AU_ID");
+                txtAuthorName.DataBindings.Add("Text", authorsTable, "Author");
+                txtAuthorBorn.DataBindings.Add("Text", authorsTable, "Year_Born");
+                authorsManager = (CurrencyManager)BindingContext[authorsTable];
 
-            setAppState("View");
+                setAppState("View");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
   
         }
 
@@ -58,16 +67,33 @@ namespace UdemyExercice6
 
         private void frmClosing(object sender, FormClosingEventArgs e)
         {
-            booksConn.Close();
-            booksConn.Dispose();
-            authorsComm.Dispose();
-            authorsAdapter.Dispose();
-            authorsTable.Dispose();
+            if (!dbError)
+            {
+                booksConn.Close();
+                booksConn.Dispose();
+                authorsComm.Dispose();
+                authorsAdapter.Dispose();
+                authorsTable.Dispose();
+            }
+            
             
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput())
+            {
+                return;
+            }
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Saving record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
             MessageBox.Show("Record saved", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
             setAppState("View");
         }
@@ -82,10 +108,17 @@ namespace UdemyExercice6
             {
                 return;
             }
-            else
+            try
             {
-                return;
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error deleting record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+           
         }
 
         private void setAppState(string appState)
@@ -130,7 +163,16 @@ namespace UdemyExercice6
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            setAppState("Add");
+            
+            try
+            {
+                setAppState("Add");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error adding new record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -159,7 +201,7 @@ namespace UdemyExercice6
             bool allOK = true;
             if (txtAuthorName.Text.Trim().Equals(""))
             {
-                message = "Author's name is required" + "r\n";
+                message = "Author's name is required" + "\r\n";
                 txtAuthorName.Focus();
                 allOK = false;
             }
