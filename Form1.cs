@@ -25,6 +25,10 @@ namespace UdemyExercice6
         CurrencyManager authorsManager;
         bool dbError = true;
 
+        public string AppState { get; set; }
+
+        OleDbCommandBuilder builderComm;
+
 
         private void frmAuthors_Load(object sender, EventArgs e)
         {
@@ -87,15 +91,36 @@ namespace UdemyExercice6
             }
             try
             {
+                authorsManager.EndCurrentEdit();
+                builderComm = new OleDbCommandBuilder(authorsAdapter);
+
+                if(AppState == "Edit")
+                {
+                    var authRow = authorsTable.Select("Au_ID = " + txtAuthorID.Text);
+
+                    if (String.IsNullOrEmpty((txtAuthorBorn.Text)))
+                        authRow[0]["Year_Born"] = DBNull.Value;
+                    else
+                        authRow[0]["Year_Born"] = txtAuthorBorn.Text;
+
+                    authorsAdapter.Update(authorsTable);
+                    txtAuthorBorn.DataBindings.Add("Text", authorsTable, "Year_Born");
+                }
+                else
+                {
+                    var savedRecord = txtAuthorName.Text;
+                    authorsTable.DefaultView.Sort = "Author";
+                    authorsManager.Position = authorsTable.DefaultView.Find(savedRecord);
+                    authorsAdapter.Update(authorsTable);
+                }
                 
+                MessageBox.Show("Record saved", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                setAppState("View");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error Saving record", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
-            MessageBox.Show("Record saved", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            setAppState("View");
+                MessageBox.Show(ex.Message, "Error Saving Record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }  
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -110,15 +135,15 @@ namespace UdemyExercice6
             }
             try
             {
-
+                authorsManager.RemoveAt(authorsManager.Position);
+                builderComm = new OleDbCommandBuilder(authorsAdapter);
+                authorsAdapter.Update(authorsTable);
+                AppState = "Delete";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error deleting record", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-           
+            }  
         }
 
         private void setAppState(string appState)
@@ -158,15 +183,26 @@ namespace UdemyExercice6
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+
+           
+                
+
+            txtAuthorBorn.DataBindings.Clear(); //unbound
             setAppState("Edit");
+            AppState = "Edit";
+
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            
             try
             {
+                //var count = authorsManager.Count;
+                //authorsManager.Position = count++;
+                authorsManager.AddNew();
                 setAppState("Add");
+                AppState = "Add";
+                
             }
             catch (Exception ex)
             {
@@ -230,6 +266,7 @@ namespace UdemyExercice6
             {
                 txtAuthorBorn.Focus();
             }
+
         }
     }
 }

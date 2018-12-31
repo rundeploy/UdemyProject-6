@@ -19,6 +19,7 @@ namespace UdemyExercice6
         OleDbDataAdapter adapterPub;
         DataTable tablePub;
         CurrencyManager managerPub;
+        bool connOK = true;
         
 
         public frmPublishers()
@@ -60,10 +61,9 @@ namespace UdemyExercice6
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Database error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                connOK = false;
             }
-            
-
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -78,8 +78,16 @@ namespace UdemyExercice6
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            try
+            {
+                setState("Edit");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Editing error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
             
-            setState("default");
         }
 
         private void setState(String state)
@@ -99,6 +107,13 @@ namespace UdemyExercice6
                     txtComments.ReadOnly = true;
                     btnSave.Enabled = false;
                     btnCancel.Enabled = false;
+                    btnPrevious.Enabled = true;
+                    btnNext.Enabled = true;
+                    btnEdit.Enabled = true;
+                    btnAdd.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnDone.Enabled = true;
+                    lblWrongInput.Visible = false;
 
                     break;
 
@@ -116,22 +131,38 @@ namespace UdemyExercice6
                     txtComments.ReadOnly = false;
                     btnSave.Enabled = true;
                     btnCancel.Enabled = true;
+                    btnPrevious.Enabled = false;
+                    btnNext.Enabled = false;
+                    btnEdit.Enabled = false;
+                    btnAdd.Enabled = false;
+                    btnDelete.Enabled = false;
+                    btnDone.Enabled = false;
+                    txtName.Focus();
 
                     break;
             }
-           
         }
 
         
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (validateInput())
+            if (!validInput())
             {
                 return;
             }
-            setState("View");
-            MessageBox.Show("Record saved", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            try
+            {
+                MessageBox.Show("Record saved", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                setState("View");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Saving record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -140,45 +171,137 @@ namespace UdemyExercice6
             
         }
 
-        private bool validateInput()
+        private bool validInput()
         {
             string message = "";
-            bool errored = false;
+            bool isValid = true;
 
             if (txtCompanyName.Text.Trim().Equals(""))
             {
                 message = "Company name can't be empty" + "\r\n";
                 txtCompanyName.Focus();
-                errored = true;
+                isValid = false;
             }
             if (txtName.Text.Trim().Equals(""))
             {
                 message += "Name can't be empty" + "\r\n";
                 txtName.Focus();
-                errored = true;
+                isValid = false;
             }
 
             
-
-
-
-            if (errored)
+            if (!isValid)
             {
                 MessageBox.Show(message, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
 
-            return errored;
+            return isValid;
         }
 
 
+       
+
+        private void txtTelephone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if ((e.KeyChar >= '0' && e.KeyChar <= '9') || e.KeyChar == 8 || e.KeyChar == 13)
+            {
+                e.Handled = false;
+                lblWrongInput.Visible = false;
+
+                txtInput_KeyPress( sender,  e);
+            }
+            else
+            {
+                e.Handled = true;
+                lblWrongInput.Visible = true;
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                setState("Add");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Adding record error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult response;
+            response = MessageBox.Show("Are you sure you want to delete this record?", "Delete",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+            if (response == DialogResult.No)
+            {
+                return;
+            }
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error deleting record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if(e.KeyChar == 13)
+            {
+                switch (textBox.Name)
+                {
+                    case "txtName":
+                        txtCompanyName.Focus();
+                        break;
+                    case "txtCompanyName":
+                        txtAddress.Focus();
+                        break;
+                    case "txtAddress":
+                        txtCity.Focus();
+                        break;
+                    case "txtCity":
+                        txtState.Focus();
+                        break;
+                    case "txtState":
+                        txtZip.Focus();
+                        break;
+                    case "txtZip":
+                        txtTelephone.Focus();
+                        break;
+                    case "txtTelephone":
+                        txtFax.Focus();
+                        break; ;
+                    case "txtFax":
+                        txtComments.Focus();
+                        break; ;
+                    case "txtComments":
+                        btnSave.Focus();
+                        break;
+
+                }
+            }
+        }
+
         private void frmClosing(object sender, FormClosingEventArgs e)
         {
-            connPub.Close();
-            connPub.Dispose();
-            command.Dispose();
-            adapterPub.Dispose();
-            tablePub.Dispose();
+            if (connOK)
+            {
+                connPub.Close();
+                connPub.Dispose();
+                command.Dispose();
+                adapterPub.Dispose();
+                tablePub.Dispose();
+            }
+
         }
     }
 }

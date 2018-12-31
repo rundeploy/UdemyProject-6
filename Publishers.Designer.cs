@@ -62,73 +62,85 @@
             // txtPublishersID
             // 
             this.txtPublishersID.AcceptsTab = true;
+            this.txtPublishersID.BackColor = System.Drawing.Color.Red;
             this.txtPublishersID.Location = new System.Drawing.Point(153, 12);
             this.txtPublishersID.Name = "txtPublishersID";
+            this.txtPublishersID.ReadOnly = true;
             this.txtPublishersID.Size = new System.Drawing.Size(100, 20);
             this.txtPublishersID.TabIndex = 0;
+            this.txtPublishersID.TabStop = false;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(153, 50);
+            this.txtName.Location = new System.Drawing.Point(153, 55);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(212, 20);
             this.txtName.TabIndex = 1;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtCompanyName
             // 
-            this.txtCompanyName.Location = new System.Drawing.Point(153, 95);
+            this.txtCompanyName.Location = new System.Drawing.Point(153, 98);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(212, 20);
             this.txtCompanyName.TabIndex = 2;
+            this.txtCompanyName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(153, 139);
+            this.txtAddress.Location = new System.Drawing.Point(153, 141);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(212, 20);
             this.txtAddress.TabIndex = 3;
+            this.txtAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(153, 185);
+            this.txtCity.Location = new System.Drawing.Point(153, 184);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(212, 20);
             this.txtCity.TabIndex = 4;
+            this.txtCity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(153, 226);
+            this.txtState.Location = new System.Drawing.Point(153, 227);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(100, 20);
             this.txtState.TabIndex = 5;
+            this.txtState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtZip
             // 
-            this.txtZip.Location = new System.Drawing.Point(153, 268);
+            this.txtZip.Location = new System.Drawing.Point(153, 270);
             this.txtZip.Name = "txtZip";
             this.txtZip.Size = new System.Drawing.Size(100, 20);
             this.txtZip.TabIndex = 6;
+            this.txtZip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtTelephone
             // 
-            this.txtTelephone.Location = new System.Drawing.Point(153, 314);
+            this.txtTelephone.Location = new System.Drawing.Point(153, 313);
             this.txtTelephone.Name = "txtTelephone";
             this.txtTelephone.Size = new System.Drawing.Size(100, 20);
             this.txtTelephone.TabIndex = 7;
+            this.txtTelephone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelephone_KeyPress);
             // 
             // txtFax
             // 
-            this.txtFax.Location = new System.Drawing.Point(153, 360);
+            this.txtFax.Location = new System.Drawing.Point(153, 356);
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(100, 20);
             this.txtFax.TabIndex = 8;
+            this.txtFax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // txtComments
             // 
-            this.txtComments.Location = new System.Drawing.Point(153, 400);
+            this.txtComments.Location = new System.Drawing.Point(153, 399);
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(100, 20);
             this.txtComments.TabIndex = 9;
+            this.txtComments.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // label1
             // 
@@ -142,7 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 53);
+            this.label2.Location = new System.Drawing.Point(32, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 11;
@@ -151,7 +163,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 98);
+            this.label3.Location = new System.Drawing.Point(32, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 12;
@@ -160,7 +172,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 142);
+            this.label4.Location = new System.Drawing.Point(32, 144);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 13);
             this.label4.TabIndex = 13;
@@ -169,7 +181,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 188);
+            this.label5.Location = new System.Drawing.Point(32, 187);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 13);
             this.label5.TabIndex = 14;
@@ -178,7 +190,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 229);
+            this.label6.Location = new System.Drawing.Point(32, 230);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 13);
             this.label6.TabIndex = 15;
@@ -187,7 +199,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 271);
+            this.label7.Location = new System.Drawing.Point(32, 273);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(22, 13);
             this.label7.TabIndex = 16;
@@ -196,7 +208,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 317);
+            this.label8.Location = new System.Drawing.Point(32, 316);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
             this.label8.TabIndex = 17;
@@ -205,7 +217,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(32, 363);
+            this.label9.Location = new System.Drawing.Point(32, 359);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(24, 13);
             this.label9.TabIndex = 18;
@@ -214,7 +226,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(32, 403);
+            this.label10.Location = new System.Drawing.Point(32, 402);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(56, 13);
             this.label10.TabIndex = 19;
@@ -278,6 +290,7 @@
             this.btnAdd.TabIndex = 25;
             this.btnAdd.Text = "Add New";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
@@ -287,6 +300,7 @@
             this.btnDelete.TabIndex = 26;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnDone
             // 
