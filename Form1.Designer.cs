@@ -44,6 +44,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
             this.lblWrongInput = new System.Windows.Forms.Label();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +112,7 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(80, 237);
+            this.btnPrevious.Location = new System.Drawing.Point(106, 237);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(75, 23);
             this.btnPrevious.TabIndex = 7;
@@ -120,7 +122,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(185, 237);
+            this.btnNext.Location = new System.Drawing.Point(196, 237);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
             this.btnNext.TabIndex = 8;
@@ -186,6 +188,7 @@
             this.btnDone.TabIndex = 14;
             this.btnDone.Text = "D&one";
             this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
             // lblWrongInput
             // 
@@ -198,11 +201,33 @@
             this.lblWrongInput.Text = "Wrong Input";
             this.lblWrongInput.Visible = false;
             // 
+            // btnFirst
+            // 
+            this.btnFirst.Location = new System.Drawing.Point(15, 237);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(75, 23);
+            this.btnFirst.TabIndex = 16;
+            this.btnFirst.Text = "|<First";
+            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            // 
+            // btnLast
+            // 
+            this.btnLast.Location = new System.Drawing.Point(292, 237);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(75, 23);
+            this.btnLast.TabIndex = 17;
+            this.btnLast.Text = "Last>|";
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            // 
             // frmAuthors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 450);
+            this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.lblWrongInput);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnDelete);
@@ -246,6 +271,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Label lblWrongInput;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnLast;
     }
 }
 

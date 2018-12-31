@@ -110,6 +110,9 @@ namespace UdemyExercice6
                 {
                     var savedRecord = txtAuthorName.Text;
                     authorsTable.DefaultView.Sort = "Author";
+                    //when adding a new author it goes to positino 0
+                    //and after adding second author it would not allow
+                    //because of the Au_ID
                     authorsManager.Position = authorsTable.DefaultView.Find(savedRecord);
                     authorsAdapter.Update(authorsTable);
                 }
@@ -183,10 +186,6 @@ namespace UdemyExercice6
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
-           
-                
-
             txtAuthorBorn.DataBindings.Clear(); //unbound
             setAppState("Edit");
             AppState = "Edit";
@@ -199,7 +198,10 @@ namespace UdemyExercice6
             {
                 //var count = authorsManager.Count;
                 //authorsManager.Position = count++;
+                //authorsManager.Position = authorsManager.Count+1;
+                
                 authorsManager.AddNew();
+                
                 setAppState("Add");
                 AppState = "Add";
                 
@@ -267,6 +269,21 @@ namespace UdemyExercice6
                 txtAuthorBorn.Focus();
             }
 
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            authorsManager.Position = 0;
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            authorsManager.Position = authorsManager.Count - 1;
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
