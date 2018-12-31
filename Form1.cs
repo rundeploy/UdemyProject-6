@@ -110,9 +110,6 @@ namespace UdemyExercice6
                 {
                     var savedRecord = txtAuthorName.Text;
                     authorsTable.DefaultView.Sort = "Author";
-                    //when adding a new author it goes to positino 0
-                    //and after adding second author it would not allow
-                    //because of the Au_ID
                     authorsManager.Position = authorsTable.DefaultView.Find(savedRecord);
                     authorsAdapter.Update(authorsTable);
                 }
